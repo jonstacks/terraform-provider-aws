@@ -128,6 +128,26 @@ func TestAccAWSVpnGateway_withAvailabilityZoneSetToState(t *testing.T) {
 	})
 }
 
+func TestAccAWSVpnGateway_withAmazonSideAsnSetToState(t *testing.T) {
+	var v ec2.VpnGateway
+
+	resource.Test(t, resource.TestCase{
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckVpnGatewayDestroy,
+		Steps: []resource.TestStep{
+			resource.TestStep{
+				Config: testAccVpnGatewayConfigWithASN,
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckVpnGatewayExists("aws_vpn_gateway.foo", &v),
+					resource.TestCheckResourceAttr(
+						"aws_vpn_gateway.foo", "amazon_side_asn", "4294967294"),
+				),
+			},
+		},
+	})
+}
+
 func TestAccAWSVpnGateway_disappears(t *testing.T) {
 	var v ec2.VpnGateway
 
