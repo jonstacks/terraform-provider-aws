@@ -2887,6 +2887,10 @@ func TestValidateCognitoUserPoolDomain(t *testing.T) {
 		_, errors := validateCognitoUserPoolDomain(v, "name")
 		if len(errors) == 0 {
 			t.Fatalf("%q should be an invalid Cognito User Pool Domain", v)
+		}
+	}
+
+}
 
 func TestValidateAmazonSideAsn(t *testing.T) {
 	validAsns := []string{

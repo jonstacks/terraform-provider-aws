@@ -2024,6 +2024,8 @@ func validateAwsElastiCacheReplicationGroupAuthToken(v interface{}, k string) (w
 		errors = append(errors, fmt.Errorf(
 			"only alphanumeric characters or symbols (excluding @, \", and /) allowed in %q", k))
 	}
+	return
+}
 
 func validateAmazonSideAsn(v interface{}, k string) (ws []string, errors []error) {
 	value := v.(string)
